@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let docBody = document.querySelector("body")
+        let div = document.createElement("div")
+        
+        docBody.appendChild(div)
+        let divLocation = document.querySelector("div");
+        console.log(divLocation)
+
+        let header = document.createElement("h1")
+        let headeText = "My Website";
+        header.append(headeText)
+        
+        div.appendChild(header)
+        div.style.cssText = "display : flex; justify-content: center ;border : 1px solid red; padding: 5px 20px;";
+        let pContainer = document.createElement("div")
+        docBody.appendChild(pContainer); 
+        let p1 = document.createElement("p")
+        let p1Text = "lorem lorem lorem lorem lorem lorem";
+        p1.append(p1Text)
+        pContainer.appendChild(p1)
+        p1.style.cssText = "font-size: 24px; color:blue;"
+        let p2 = document.createElement("p")
+        let p2Text = "lorem lorem lorem lorem lorem lorem";
+        p2.append(p2Text)
+        pContainer.appendChild(p2)
+        p2.style.cssText = "font-size: 24px; color:green;";
+        pContainer.style.cssText = "border: 1px solid black; display: flex; flex-direction: column; align-items: center";
+
+
+        
+
+    </script>
+</body>
+</html>

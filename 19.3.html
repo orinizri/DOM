@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 20px
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The inserted text is:</h1>
+    <p></p>
+    <input type="text" value="">
+    <input type="text" value="">
+    <input type="text" value="">
+    <input type="text" value="">
+    <button>Verify</button>
+    <script>
+        let text = document.querySelector("p");
+        let allInput = document.querySelectorAll("input")
+        let firstInput = document.querySelector("input")
+        firstInput.focus() // Default focus on first input
+        for (let i = 0; i < allInput.length; i++) { // Loop through input for focusing
+            let arr = [];
+            allInput[i].oninput = getInput;
+            function getInput(e) {
+                console.log("got here")
+                if (e.target.value && allInput[i + 1]) {
+                    allInput[i + 1].focus()
+                } else {
+                    for (let i = 0; i < allInput.length; i++) { // Auto submit
+                        arr.push(allInput[i].value);
+                        text.textContent = arr.join('')
+                    }
+                }
+            }
+        }
+        let button = document.querySelector("button");
+        button.addEventListener("click", () => {
+            let arr = [];
+            for (let i = 0; i < allInput.length; i++) {
+                if (allInput[i].value.length > 1) {
+                    allInput[i].value = allInput[i].value[0]
+                    arr.push(allInput[i].value)
+                } else if (allInput[i].value == 1) {
+                    arr.push(allInput[i].value)
+                }
+                else if (!allInput[i].value) {
+                    text.textContent = text.textContent + `${i + 1}st input is empty `
+                }
+            }
+            if (arr.length == 4) {
+                text.textContent = arr.join("").replace(",", "");
+            }
+        })
+            for (let i = 0; i < allInput.length; i++) {
+                allInput[i].addEventListener("paste", (e) => {
+                let clipboardData, pastedData;
+
+                // Stop data actually being pasted into div
+                e.stopPropagation();
+                e.preventDefault();
+
+                // Get pasted data via clipboard API
+                clipboardData = e.clipboardData || window.clipboardData;
+                pastedData = clipboardData.getData('Text');
+
+                // Do whatever with pasteddata
+                pastedData = pastedData.split("")
+                console.log(pastedData, i);
+
+                for (let j=0 ; j < pastedData.length ; j++, i++) {
+                    if (allInput[i]) {
+                    allInput[i].value = pastedData[j];
+                }
+                }
+            })
+        }
+
+    // });
+
+
+    </script>
+</body>
+
+</html>

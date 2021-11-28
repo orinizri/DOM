@@ -40,7 +40,7 @@
                 newLI = document.createElement("li");
                 let text = user.firstName + ' ' + user.lastName;
                 newLI.append(text);
-                newLI.dataset.Id = user.id;
+                newLI.dataset.id = user.id;
                 location.appendChild(newLI);
                 console.log(newLI)
             })
@@ -48,7 +48,7 @@
         }
         createArray(ol)
         ol.style.listStyleType = 'none';
-        
+        console.log(newLI.dataset)
     </script>
 </body>
 

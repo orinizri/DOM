@@ -31,22 +31,23 @@
             },
         ];
         let body = document.querySelector("body")
-        let newOL = document.createElement("ol")
-        body.appendChild(newOL)
-        let ol = document.querySelector("ol")
+        let ol = document.createElement("ol")
+        body.appendChild(ol)
         
-        function createArray (location) {
+        function createArray (parent) {
             users.forEach( (user) => {
                 newLI = document.createElement("li");
                 let text = user.firstName + ' ' + user.lastName;
-                newLI.append(text);
+                newLI.textContent = text;
+                // newLI.innerText = text;
+                // newLI.append(text);
                 newLI.dataset.id = user.id;
-                location.appendChild(newLI);
+                parent.appendChild(newLI);
                 console.log(newLI)
             })
-            return location
+            return parent
         }
-        createArray(ol)
+        createArray(ol);
         ol.style.listStyleType = 'none';
         console.log(newLI.dataset)
     </script>

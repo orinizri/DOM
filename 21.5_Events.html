@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <p>How many emojis do you want?</p>
+        <input type="text">
+        <input type="submit" name="" id="">
+        <p class="emojis"></p>
+    </main>
+    <script>
+        let emojiBank = [0x1F600, 0x1F604, 0x1F34A, 0x1F344, 0x1F37F, 0x1F363, 0x1F370, 0x1F355,
+            0x1F354, 0x1F35F, 0x1F6C0, 0x1F48E, 0x1F5FA, 0x23F0, 0x1F579, 0x1F4DA,
+            0x1F431, 0x1F42A, 0x1F439, 0x1F424];
+        let firstP = document.querySelector("p");
+        let input = document.querySelector("input")
+        let submit = document.querySelector("input[type='submit']")
+        firstP.append(String.fromCodePoint(emojiBank[0]))
+        let pEmojis = document.querySelector(".emojis")
+        submit.addEventListener("click" , () => {
+            howManyTimes = input.value;
+            for (let i = 0, j=0 ; j < howManyTimes ; i++, j++) {
+                if (!emojiBank[i]) {
+                    i = 0
+                }
+                pEmojis.append(String.fromCodePoint(emojiBank[i]))
+            }
+        })
+        input.addEventListener("click", ()=> {
+            pEmojis.textContent = '';
+        })
+    </script>
+</body>
+
+</html>

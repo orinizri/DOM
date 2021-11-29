@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="How old are you?">
+    <input type="submit">
+    <script>
+        let inputText;
+        submit = document.querySelector("input[type='submit']");
+        input = document.querySelector("input");
+        input.addEventListener("input", getAge)
+        
+        function getAge (event) {
+            inputText = event.target.value;
+            // console.log(inputText)
+        }
+        
+        submit.addEventListener("click" , () => {
+            console.log(inputText)
+            inputText < 18 ?
+            alert("You're too young") :
+            alert("You can drink now");
+            })
+
+
+
+
+
+    </script>
+</body>
+</html>

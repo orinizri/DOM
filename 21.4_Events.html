@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changing on and off lightbulb</title>
+    <style>
+        .off {
+            background: url("/images/unnamed.jpg") no-repeat;
+            background-position: -150px 0px;
+            width: 600px;
+            height: 1200px;
+        }
+        .on {
+            background-position: -805px 0px;
+        }
+    </style>
+</head>
+<body>
+    <p>Using a sprite and a toggle to switch on and off on the light bulb</p>
+    <img class="off">
+    <script>
+        let bulb = document.querySelector("img");
+        bulb.addEventListener("click", () =>{
+            bulb.classList.toggle("on");
+        })
+    </script>
+</body>
+
+</html>

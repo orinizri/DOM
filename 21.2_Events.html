@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="plus">+</button>
+    <h1>Resize me</h1>
+    <button class="minus">-</button>
+    <script>
+        displayedText = document.querySelector("h1")
+        plus = document.querySelector(".plus")
+        minus = document.querySelector(".minus")
+
+
+        const DisplayedTextstyle = getComputedStyle(displayedText);
+        let newFontSize = DisplayedTextstyle.fontSize;
+        
+
+        const minusSize =  () => {
+            let currentSize = parseInt(DisplayedTextstyle.fontSize.match(/[0-9]/g).join(""));
+            
+            newFontSize = currentSize - 4;
+            if (newFontSize > 6) {
+            displayedText.style.fontSize = newFontSize + "px";
+            currentSize = newFontSize;
+            console.log(currentSize)
+        }
+        }
+        const plusSize =  () => {
+            let currentSize = parseInt(DisplayedTextstyle.fontSize.match(/[0-9]/g).join(""));
+            newFontSize = currentSize + 4;
+            if (newFontSize < 100) {
+            displayedText.style.fontSize = newFontSize + "px";
+            currentSize = newFontSize;
+            console.log(currentSize)
+        }
+        }
+
+        
+        plus.addEventListener("click", plusSize)
+        minus.addEventListener("click", minusSize)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            height: 200px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox">
+    <main>
+        <img src="/images/light-bulb-on-off-png-11553940319kdxsp3rf0i.png" alt="">
+    </main>
+<script>
+    inputButton = document.querySelector("input")
+    image = document.querySelector("img")
+    inputButton.addEventListener("click", () => {
+        inputButton.checked === true ?
+            image.style.display = "flex" :
+            image.style.display = "none";
+        }
+    )
+
+</script>
+</body>
+</html>

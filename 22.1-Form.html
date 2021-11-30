@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 30%;
+        }
+        section {
+            margin-top: 10px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid red;
+            color: #333;
+            width: 30%;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h3>Please fill your details below</h3>
+        <form>
+            <label for="fullName">Full Name: </label>
+            <input type="text" id="name">
+            <label for="fullName">Age: </label>
+            <input type="text" id="age">
+            <label for="fullName">Email: </label>
+            <input type="text" id="email">
+            <input type="submit">
+        </form>
+    </main>
+    <section>
+        <h3>Please confirm your details</h3>
+            <span></span>
+            <button>That is correct</button>
+    </section>
+    <script>
+        let allInputs = document.querySelectorAll("input[type='text']");
+        let form = document.querySelector("form")
+        let formAnswers = {};
+        let submitButton = document.querySelector("input[type='submit']");
+        let alertArea = document.querySelector("section")
+
+        submitButton.addEventListener("click" , function (e) {
+            e.preventDefault();
+            for (let input of allInputs) {
+                formAnswers[input.id] = input.value;
+                }
+            let answer = window.confirm("Please validate your input")
+            if (answer === false) {
+                    Object.entries(formAnswers).forEach( ([key, value], index) => {
+                    allInputs[index].value = value;
+                    alertArea.innerHTML = "Now you make Changes"
+                    alertArea.style.display = "flex";
+                });
+            } else {
+                alert("The form has been submitted")
+                form.submit()
+                }
+            })
+        form.addEventListener("submit", ()=> {
+                alert("The form has been submitted")
+        })
+
+    </script>
+</body>
+</html>

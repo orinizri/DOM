@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Race 🏎</title>
+    <link rel="shortcut icon" href="data:image/x-icon;" type="image/x-icon" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="banner">
+      <h1 class="text-center">Race</h1>
+    </div>
+    <hr />
+    <!-- You race HTML code here -->
+    <table class="racer-table">
+      <tr id="player1-race">
+        <td class="active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="finish"></td>
+      </tr>
+      <tr id="player2-race">
+        <td class="active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="finish"></td>
+      </tr>
+    </table>
+    <hr />
+    <script>
+      player1 = document.querySelector("#player1-race")
+      player2 = document.querySelector("#player2-race")
+      console.log(player2.children[1].classList.value)
+      function oneStep (player) {
+        let activeTD = player.querySelector(".active")
+        if (isWinning(player)) {
+        activeTD.classList.toggle("active")
+        activeTD.nextElementSibling.classList.toggle("active")
+        }
+      }
+      function isWinning (player) {
+        let activeTD = player.querySelector(".active")
+        if (activeTD.classList.length === 2) {
+          let continueGame = confirm(`WOW! ${player.id.split('')[6]} wins!!! Play again?`)
+          restartGame(continueGame);
+          return false
+        }
+        return true
+      }
+      function restartGame(continueGame) {
+        if (continueGame) {
+          console.log("yay we continue")
+          for (let i=0; i < player1.children.length ; i++) {
+            if (i = 0 || player1.children[i].classList.length === 2) {
+              player1.children[i].classList.toggle("active")
+            } else if (player1.children[i].classList.value === "active") {
+              (player1.children[i].classList.toggle("active"))
+            }
+          }
+          for (let i=0; i < player2.children.length ; i++) {
+            if (i = 0 || player2.children[i].classList.length === 2) {
+              player2.children[i].classList.toggle("active")
+            } else if (player2.children[i].classList.value === "active") {
+              (player2.children[i].classList.toggle("active"))
+            }
+              
+            }
+          }
+        }
+      function game () {
+        window.addEventListener("keyup", function (e) {
+          if (e.key === 'ArrowRight' || e.key === 'Up') {
+            oneStep(player1)
+          } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
+            oneStep(player2)
+          }
+        }
+      )}
+      console.log(game())
+    </script>
+  </body>
+</html>

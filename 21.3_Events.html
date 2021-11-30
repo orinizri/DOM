@@ -21,7 +21,7 @@
 </head>
 <body>
     <form>
-        <p>Why are you interested in this position?</p>
+        <label>Why are you interested in this position?</label>
         <textarea name="textarea" cols="30" rows="10" placeholder="Tell us."></textarea>
         <button type="submit">Submit</button>
         <p class="notify"></p>
@@ -30,11 +30,9 @@
         let textBox = document.querySelector("textarea")
         let notification = document.querySelector(".notify")
         textBox.maxLength = 100;
-        console.log(textBox.value.length)
-        console.log(textBox)
-        textBox.addEventListener("input", counter)
+        textBox.addEventListener("input", CharactersCounter)
 
-        function counter () {
+        function CharactersCounter () {
             if (textBox.value.length > 90) {
                 notification.textContent = `You have ${100 - textBox.value.length} characters left` 
             } else {

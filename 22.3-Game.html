@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            font-size: 50px;
+        }
+        p {
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Guess the letter</h1>
+        <div>?</div>
+        <button class="msg">play</button>
+        <span></span>
+        <span class="guessed"></span>
+    </main>
+<script>
+    let play = document.querySelector("button")
+    let message = document.querySelector("span")
+    let guessedLettersElement = document.querySelector(".guessed")
+    let guessedLetters = {};
+    let secretLetter = '';
+
+    function getRandomLetter () {
+        let a_z = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+        return a_z[Math.floor(Math.random() * 36)]
+    }
+    play.addEventListener("click" , () => {
+        let randomLetter = getRandomLetter();
+        message.innerHTML = "Game Started! Guess a letter <br> Letters guessed:"
+        secretLetter += randomLetter;
+        console.log(secretLetter)
+    })
+    window.addEventListener("keypress", (e) => {
+        let input = e.key.toUpperCase()
+            if (input.match(/[A-Z]/g)) {
+                if (input === secretLetter) {
+                    message.textContent = `You win! the letter indeed was ${secretLetter}`
+                    secretLetter = '';
+                    guessedLetters = {};
+                    guessedLettersElement.textContent = '';
+
+                } else {
+                    if (!guessedLetters[input]) {
+                        guessedLetters[input] = 1
+                        guessedLettersElement.textContent += (input + ',')
+                    } else if (guessedLetters[input] == 1) {
+                        message.textContent = `${input} was already guessed. Try something else`
+                    }
+                }
+    
+            }
+            
+        })
+
+
+
+</script>
+</body>
+</html>

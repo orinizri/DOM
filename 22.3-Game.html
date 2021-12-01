@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
     <title>Document</title>
     <style>
+        * {
+            margin:0;
+            padding:0;
+            background-color: #f6e0b5;
+        }
         main {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            font-family: 'Patrick Hand', cursive;
+        }
+        main h1 {
+            font-size: 70px;
+            line-height: 10rem;
+            color: #66545e;
         }
         div {
             display: flex;
@@ -18,59 +33,82 @@
             width: 100px;
             height: 100px;
             border: 1px solid black;
-            font-size: 50px;
+            font-size: 70px;
+            margin-bottom: 30px;
+            color:#aa6f73;
+            border: 7px dashed #aa6f73;
         }
         p {
-            font-size: 30px;
+            font-size: 50px;
+            color: #a39193;
         }
-
+        .msg {
+            padding: 5px;
+            font-size: 20px;
+            background-color: white;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .msg:hover {
+            background-color: lightgray;
+        }
+        span {
+            font-size: 3rem;
+            line-height: 3rem;
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
     <main>
-        <h1>Guess the letter</h1>
+        <h1>Guess The Letter</h1>
         <div>?</div>
-        <button class="msg">play</button>
+        <button class="msg">Play</button>
         <span></span>
         <span class="guessed"></span>
     </main>
 <script>
-    let play = document.querySelector("button")
-    let message = document.querySelector("span")
-    let guessedLettersElement = document.querySelector(".guessed")
-    let guessedLetters = {};
+    const play = document.querySelector("button")
+    const message = document.querySelector("span")
+    const guessedLettersElement = document.querySelector(".guessed")
+    let guessedLetters = {}; // bank 
     let secretLetter = '';
 
+    // A function which generated a random letter 
     function getRandomLetter () {
-        let a_z = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+        const a_z = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
         return a_z[Math.floor(Math.random() * 36)]
     }
+    // Play button pressed
     play.addEventListener("click" , () => {
-        let randomLetter = getRandomLetter();
-        message.innerHTML = "Game Started! Guess a letter <br> Letters guessed:"
+        play.textContent = "Play";
+        let randomLetter = getRandomLetter(); // Get random letter
+        message.innerHTML = "Game Started! Guess a letter <br> Letters guessed:";
         secretLetter += randomLetter;
         console.log(secretLetter)
     })
     window.addEventListener("keypress", (e) => {
-        let input = e.key.toUpperCase()
-            if (input.match(/[A-Z]/g)) {
-                if (input === secretLetter) {
-                    message.textContent = `You win! the letter indeed was ${secretLetter}`
+        let input = e.key.toUpperCase() // Keys are case insensitive
+            if (input.match(/[A-Z]/g)) { // Validate input is a letter and not space etc.
+                // If the player guessed correct
+                if (input === secretLetter) { 
+                    message.textContent = `You win! the letter indeed was ${secretLetter}`;
+                    play.textContent = "Play Again?"
                     secretLetter = '';
                     guessedLetters = {};
                     guessedLettersElement.textContent = '';
-
-                } else {
+                // If player did not guessed correct
+                } else { 
+                    // if player has not guessed the pressed key earlier
                     if (!guessedLetters[input]) {
                         guessedLetters[input] = 1
                         guessedLettersElement.textContent += (input + ',')
+                    // if player has guessed the pressed key earlier
                     } else if (guessedLetters[input] == 1) {
                         message.textContent = `${input} was already guessed. Try something else`
                     }
                 }
-    
             }
-            
         })
 
 

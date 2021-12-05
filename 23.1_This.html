@@ -1,1 +1,35 @@
+<!-- What is this? -->
+<!-- 1 -->
 <!-- console.log(this); -->
+<!-- Window, since it is the global object of this -->
+
+<!-- 2 -->
+<!-- const myObj = {
+ name: "Timmy",
+ greet: () => {
+ console.log(`Hello ${this.name}`);
+ },
+};
+myObj.greet(); -->
+<!-- Arrow functions don't bind their own scope, but inherit it from the parent one -->
+
+<!-- 3 -->
+<!-- 
+    const myFuncDec = function () {
+        console.log(this);
+    };-->
+<!-- This is the function since the function was declared in a variable -->
+
+<!-- 4 -->
+<!-- 
+    const myFuncArrow = () => {
+        console.log(this);
+    };
+myFuncArrow();-->
+<!-- will be windows since arrow function don't bind their own scope -->
+
+<!-- 5 -->
+<!-- document.querySelector(".element").addEventListener(() => {
+ console.log(this);
+}); -->
+<!-- The type of event is missing. the global scope of the element is the window since  arrow function don't bind their own scope. to receive the div element as this, the arrow function should be replaced with regular function -->

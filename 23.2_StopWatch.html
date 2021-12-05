@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .buttons button {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="watch">
+        <div class="seconds"></div>
+        <div class="minutes"></div>
+    </div>
+    <div class="buttons">
+        <button class="play">Start</button>
+        <button class="stop">Stop</button>
+    </div>
+    <script>
+        const watch = document.querySelector(".watch")
+        const playButton = document.querySelector(".play")
+        console.log(playButton)
+        const stopButton = document.querySelector(".stop")
+        let seconds = 0;
+        let minutes = seconds/60
+        watch.append(seconds)
+        let flag = false;
+        let runseconds;
+        function playFunc () {
+            console.log("playFunc activated")
+            runseconds = setInterval(addSeconds, 1000);
+        }
+        function addSeconds () {
+            if (seconds < 60) {
+                seconds+=1
+                watch.innerHTML = `${minutes}:${seconds}`
+            } else if (seconds = 59) {
+                if (minutes < 60) {
+                    minutes++
+                    seconds = 0
+                    watch.innerHTML = `${minutes}:${seconds}`
+                } else {
+                    minutes = 0;
+                    seconds = 0;
+                    clearInterval(runseconds)
+                    watch.innerHTML = `${minutes}:${seconds}`
+                }
+            }
+        }
+        function stopFunc () {
+            clearInterval(runseconds)
+        }
+        stopButton.addEventListener("click" , stopFunc);
+        playButton.addEventListener("click" , playFunc);
+
+    </script>
+</body>
+</html>

@@ -18,7 +18,7 @@ myObj.greet(); -->
     const myFuncDec = function () {
         console.log(this);
     };-->
-<!-- This is the function since the function was declared in a variable -->
+<!-- Window -->
 
 <!-- 4 -->
 <!-- 
@@ -32,4 +32,4 @@ myFuncArrow();-->
 <!-- document.querySelector(".element").addEventListener(() => {
  console.log(this);
 }); -->
-<!-- The type of event is missing. the global scope of the element is the window since  arrow function don't bind their own scope. to receive the div element as this, the arrow function should be replaced with regular function -->
+<!-- The type of event is missing. the global scope of the element is the window since arrow function don't bind their own scope. to receive the div element as this, the arrow function should be replaced with regular function -->

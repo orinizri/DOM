@@ -16,9 +16,15 @@
             this.c = c;
             this.d = d;
         }
-        Square.prototype.isSquare = function (a, b, c, d) {
-            return (a === c && b === d)
+        // Square.prototype.isSquare = function (a, b, c, d) {
+        //     return (a === c && b === d)
+        // }
+        function isEqual() {
+            return (this.a === this.b && this.b===this.c && this.c===this.d)
         }
+        Square.prototype.isEqual = isEqual;
+        let square = new Square(3,3,3,3)
+        console.log(square.isEqual())
 
     </script>
 </body>

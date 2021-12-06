@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Pokemon(pokemonName, pokemonType, pokemonAttackList) {
+            let pokemon = Object.create(PokemonMethods)
+            pokemon.name = pokemonName;
+            pokemon.type = pokemonType;
+            pokemon.attackList = pokemonAttackList;
+            return pokemon
+        }
+        const PokemonMethods = {
+            callPokemon () {
+                return `I choose you, ${this.name}!`
+            },
+            attack (attackNum) {
+                return `${this.name} used ${this.attackList[attackNum]}.`
+            }
+        }
+        const pickachu = Pokemon('pickachu','electricity',['Thunder', 'Being best friend']);
+            console.log(pickachu.callPokemon())
+            console.log(pickachu.attack(0))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // Call - pass arguments, Apply - take array as argument converts to regular arguments
+        let add = function (c) {
+            console.log(this.a + this.b + c);
+        };
+        let obj = {
+            a:1,
+            b:2
+        };
+        //add.call(obj, 3)
+
+        let argsToArray = function () {
+            console.log([].slice.call(arguments))
+        }
+        //argsToArray(1,2,3)
+        let mammal = function(legs) {
+            this.legs = legs
+        }
+        let cat = function(legs, isDomesticated) {
+            mammal.call(this, legs)
+            this.isDomesticated = isDomesticated
+        }
+        let lion = new cat (4, false)
+        // Apply 
+        let numArray = [1,2,3]
+        Math.min.apply(null, numArray) // Converted to arguments
+        // Bind - binds the functionality
+        let button = function (content) {
+            this.content = content
+        }
+        button.prototype.click = function () {
+            console.log(`${this.content} clicked`)
+        }
+        let newButton = new button('add')
+        let boundButton = newButton.click.bind(newButton)
+        //console.log(boundButton())
+
+
+
+    </script>
+</body>
+</html>

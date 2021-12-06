@@ -26,10 +26,10 @@
         console.log(playButton)
         const stopButton = document.querySelector(".stop")
         let seconds = 0;
-        let minutes = seconds/60
+        let minutes = 0;
         watch.append(seconds)
-        let flag = false;
         let runseconds;
+
         function playFunc () {
             console.log("playFunc activated")
             runseconds = setInterval(addSeconds, 1000);

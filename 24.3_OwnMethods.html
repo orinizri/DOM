@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const data = [1, 2, 3, 4, 5];
+        Array.prototype.myCustomFilter = function (fn) {
+            const filtered = []; // it will receive all values that match to condition passed in fn callback.
+            for (let i = 0; i < this.length; i++) {
+                if (fn(this[i])) {
+                    filtered.push(this[i]);
+                }
+            }
+            return filtered;
+        };
+        const filteredData = data.myCustomFilter(function (el) {
+            if (el > 2) return el;
+        });
+        console.log(filteredData);
+        Array.prototype.findOriginal = Array.prototype.find;
+        Array.prototype.find = function (fn) {
+            console.log("Find was called");
+            //   return this.findOriginal(fn);
+            for (let i = 0; i < this.length; i++) {
+                if (fn(this[i])) {
+                    return this[i];
+                }
+            }
+        };
+        const foundData = data.find(function (el) {
+            if (el > 2) return el;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function takeNumber (num) {
+        let myPromise = new Promise(function (myResolve, myReject) {
+            if (num > 10) {
+                myResolve(); // when successful
+            } else {
+                myReject();  // when error
+            }
+        });
+        myPromise
+        .then(function (value) { console.log(`${num} is greater than 10`)},)
+        .catch(function (error) { console.log(`${num} is less than 10`) })
+}
+        // "Consuming Code" (Must wait for a fulfilled Promise)
+        takeNumber(5)
+    </script>
+</body>
+
+</html>

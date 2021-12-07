@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const getIDs = () =>
+        //     new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             resolve([532, 543, 753, 1, 5]);
+        //         }, 1500);
+        //     });
+        // const getRecipe = async (recipeID) => {
+        //     const ids = await setTimeout(
+        //         (ID) => {
+        //             const recipe = {
+        //                 title: "Fresh tomato pasta",
+        //                 publisher: "Pinchas Hodadad",
+        //             };
+        //             return (`${ID}: ${recipe.title}`);
+        //         },
+        //         1500,
+        //         recipeID
+        //     );
+        // };
+        async function getIDs() {
+            try {
+                const ids = await setTimeout(() => {
+                    let arr = [532, 543, 753, 1, 5]
+                    console.log("this works!")
+                    return arr
+                }, 1500)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        
+            async function getRecipe(recipeID) {
+                try {
+                    const RecipeIds = await setTimeout(
+                        (ID) => {
+                            const recipe = {
+                                title: "Fresh tomato pasta",
+                                publisher: "Pinchas Hodadad",
+                            };
+                            return console.log(`${ID}: ${recipe.title}`);
+                        },
+                        1500,
+                        recipeID
+                    );
+                } catch (error) {
+                    console.log("NOOOO", error)
+                }
+            }
+            //console.log(getRecipe(getIDs()))
+            // async function test() {
+            //     let result = await getIDs();
+            //     return result
+            // }
+        // getIDs()
+        //     .then((IDs) => {
+        //         console.log(IDs);
+        //         return getRecipe(IDs[2]);
+        //     })
+        //     .then((recipe) => {
+        //         console.log(recipe);
+        //     })
+        //     .catch((error) => {
+        //         console.log("It is an error!");
+        //     });
+
+        async function test() {
+            try {
+                var some = await getIDs()
+                    return some
+            } catch (error) {
+                console.log(error)
+            }
+            finally {
+                var some2 = await getRecipe(some[2])
+                return some2
+            }
+        }
+        test()
+    </script>
+</body>
+
+</html>

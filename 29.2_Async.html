@@ -30,20 +30,20 @@
     </div>
     </div>
     <script>
-        const btn = document.querySelector('.getJoke button')
+        const btn = document.querySelector('.getJoke')
         const btnText = document.querySelector('.btn-text')
-        const jokeItself = document.querySelector('p')
-        const getJoke = () => {
-            fetch('https://api.jokes.one/jod', {
+        const jokeItself = document.querySelector('.para')
+        const getJoke = async () => {
+            const result = await fetch('https://api.jokes.one/jod', {
                 headers: {
                     accept: 'application/json',
                 },
             })
-                .then((Response) => Response.json())
-                .then((joke) => {jokeItself.textContent = `${joke.contents.jokes[0].joke.text}`})
-                .catch((e) => console.log(e, 'error error'))
+            console.log(result)
+            let data = await result.json();
+            return jokeItself.textContent = `${data.contents.jokes[0].joke.text}`
+            console.log('error error')
         };
-
         btn.addEventListener('click', getJoke);
     </script>
 </body>

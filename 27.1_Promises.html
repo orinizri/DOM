@@ -10,20 +10,20 @@
 
 <body>
     <script>
-        function takeNumber (num) {
-        let myPromise = new Promise(function (myResolve, myReject) {
-            if (num > 10) {
-                myResolve(); // when successful
-            } else {
-                myReject();  // when error
-            }
-        });
-        myPromise
-        .then(function (value) { console.log(`${num} is greater than 10`)},)
-        .catch(function (error) { console.log(`${num} is less than 10`) })
-}
-        // "Consuming Code" (Must wait for a fulfilled Promise)
-        takeNumber(5)
+        function takeNumber(num) {
+            let promise = new Promise(function (myResolve, myReject) {
+                if (num > 10) {
+                    myResolve(num);
+                } else {
+                    myReject(num);
+                }
+            });
+            return promise
+        }
+        takeNumber(15)
+            .then(function (value) { console.log(`${value} is greater than 10`) },)
+            .catch(function (error) { console.log(`${error} is less than 10`) })
+
     </script>
 </body>
 

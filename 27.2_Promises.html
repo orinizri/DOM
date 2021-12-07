@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        arr = ["hey", "oh", "hey"]
+        function makeAllCaps(array) {
+            let promise = new Promise(function (myResolve, myReject) {
+                for (let i=0 ; i<array.length; i++) {
+                    array[i] = array[i].toUpperCase()
+                }
+                myResolve(array);
+            });
+            return promise
+        }
+        //makeAllCaps(arr).then(function (value) { console.log(`${value}`) },)
+        //console.log(makeAllCaps(arr))
+
+        function sortWords(array) {
+            let promise = new Promise(function (myResolve, myReject) {
+            for (let word of array) {
+                if (typeof word !== 'string') {
+                    myReject(word)
+                } else {
+                    myResolve(array.sort())
+                }
+            }})
+            return promise
+        }
+        sortWords(arr)
+        .then(function (word) { console.log(`${word}`) })
+        .catch(function (value) {console.log(value)})
+        console.log(sortWords(arr))
+    </script>
+</body>
+</html>

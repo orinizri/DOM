@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            text-align: center;
+        }
+
+        .para {
+            font-size: 5rem;
+        }
+
+        .getJoke {
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p class="para"></p>
+    </div>
+    <button class="getJoke"><span class="btn-text">Get A Joke</span></button>
+    </div>
+    </div>
+    <script>
+        const btn = document.querySelector('.getJoke button')
+        const btnText = document.querySelector('.btn-text')
+        const jokeItself = document.querySelector('p')
+        const getJoke = () => {
+            fetch('https://api.jokes.one/jod', {
+                headers: {
+                    accept: 'application/json',
+                },
+            })
+                .then((Response) => Response.json())
+                .then((joke) => (jokeItself.textContent = `${joke.contents.jokes[0].joke.text}`))
+                .catch((e) => console.log(e, 'error error'))
+
+
+        };
+
+        getJoke()
+        btn.addEventListener('click', getJoke);
+    </script>
+</body>
+
+</html>

@@ -9,7 +9,7 @@
 <body>
     
     <script>
-        arr = ["hey", "oh", "hey"]
+        arr = ["hey", "oh", "hey",5]
         function makeAllCaps(array) {
             let promise = new Promise(function (myResolve, myReject) {
                 for (let i=0 ; i<array.length; i++) {
@@ -19,8 +19,10 @@
             });
             return promise
         }
-        //makeAllCaps(arr).then(function (value) { console.log(`${value}`) },)
-        //console.log(makeAllCaps(arr))
+        makeAllCaps(arr)
+            .then(sortWords)
+            .then((value) => console.log(value))
+            .catch((word) => console.log(word))
 
         function sortWords(array) {
             let promise = new Promise(function (myResolve, myReject) {
@@ -33,10 +35,7 @@
             }})
             return promise
         }
-        sortWords(arr)
-        .then(function (word) { console.log(`${word}`) })
-        .catch(function (value) {console.log(value)})
-        console.log(sortWords(arr))
+        
     </script>
 </body>
 </html>

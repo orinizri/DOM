@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    </div>
+    <button class="btn"></button>
+    <input class="input" type="text">
+    <p class="para"></p>
+    </div>
+    </div>
+    <script>
+        const container = document.querySelector('.container')
+        const btn = document.querySelector('.btn')
+        const para = document.querySelector('.para')
+        const input = document.querySelector('input')
+        let obj = []
+        async function getUsers(number) {
+            const data = await (await fetch(`https://swapi.dev/api/films/1/`)).json();
+            for (let i = 0; i < number; i++) {
+                let data2 = await (await fetch(data.characters[i])).json()
+                let homeLand2 = await (await fetch(data.characters[i])).json()
+                let homeland3 = await (await fetch(homeLand2.homeworld)).json()
+                //console.log(homeland3)
+                // Promise.all([data2, homeLand2, homeland3]).then(values => {
+                //     console.log(values)
+                // })
+                let char = {}
+
+                char['name'] = data2.name
+                char['height'] = data2.height
+                char['hair color'] = data2.hair_color
+                char['planet'] = {name : homeland3.name, population: homeland3.population}
+                
+                obj.push(char)
+            }
+            return obj
+            //let characterName = await (await fetch (`${character}`)).json();
+            //console.log(characterName)
+            //});
+            //const character= await(await fetch (`${data.characters[i].name}`)).json();
+            //console.log(character)
+        }
+        console.log(getUsers(2))
+    </script>
+</body>
+
+</html>

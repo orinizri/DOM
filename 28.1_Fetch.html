@@ -7,8 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body {
+            background-color: lightgray;
+        }
         .container {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: deepskyblue;
+            padding: 5px;
         }
 
         .para {
@@ -25,22 +34,17 @@
 <body>
     <div class="container">
         <p class="para"></p>
+        <button class="getJoke"><span class="btn-text">Get A Joke</span></button>
     </div>
-    <button class="getJoke"><span class="btn-text">Get A Joke</span></button>
     </div>
     </div>
     <script>
-        const btn = document.querySelector('.getJoke button')
+        const btn = document.querySelector('.getJoke')
         const btnText = document.querySelector('.btn-text')
         const jokeItself = document.querySelector('p')
         const getJoke = () => {
-            fetch('https://api.jokes.one/jod', {
-                headers: {
-                    accept: 'application/json',
-                },
-            })
-                .then((Response) => Response.json())
-                .then((joke) => {jokeItself.textContent = `${joke.contents.jokes[0].joke.text}`})
+            await (await fetch('https://api.jokes.one/jod')).json()
+                .then((joke) => {jokeItself.textContent = joke.contents.jokes[0].joke.text})
                 .catch((e) => console.log(e, 'error error'))
         };
 

@@ -34,14 +34,10 @@
         const btnText = document.querySelector('.btn-text')
         const jokeItself = document.querySelector('.para')
         const getJoke = async () => {
-            const result = await fetch('https://api.jokes.one/jod', {
-                headers: {
-                    accept: 'application/json',
-                },
-            })
+            const result = await fetch('https://api.jokes.one/jod')
             console.log(result)
             let data = await result.json();
-            return jokeItself.textContent = `${data.contents.jokes[0].joke.text}`
+            return jokeItself.textContent = data.contents.jokes[0].joke.text
             console.log('error error')
         };
         btn.addEventListener('click', getJoke);

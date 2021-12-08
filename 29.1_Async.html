@@ -10,84 +10,52 @@
 
 <body>
     <script>
-        // const getIDs = () =>
-        //     new Promise((resolve, reject) => {
-        //         setTimeout(() => {
-        //             resolve([532, 543, 753, 1, 5]);
-        //         }, 1500);
-        //     });
-        // const getRecipe = async (recipeID) => {
-        //     const ids = await setTimeout(
-        //         (ID) => {
-        //             const recipe = {
-        //                 title: "Fresh tomato pasta",
-        //                 publisher: "Pinchas Hodadad",
-        //             };
-        //             return (`${ID}: ${recipe.title}`);
-        //         },
-        //         1500,
-        //         recipeID
-        //     );
-        // };
-        async function getIDs() {
-            try {
-                const ids = await setTimeout(() => {
-                    let arr = [532, 543, 753, 1, 5]
-                    console.log("this works!")
-                    return arr
-                }, 1500)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        
-            async function getRecipe(recipeID) {
-                try {
-                    const RecipeIds = await setTimeout(
-                        (ID) => {
-                            const recipe = {
-                                title: "Fresh tomato pasta",
-                                publisher: "Pinchas Hodadad",
-                            };
-                            return console.log(`${ID}: ${recipe.title}`);
-                        },
-                        1500,
-                        recipeID
-                    );
-                } catch (error) {
-                    console.log("NOOOO", error)
-                }
-            }
-            //console.log(getRecipe(getIDs()))
-            // async function test() {
-            //     let result = await getIDs();
-            //     return result
-            // }
-        // getIDs()
-        //     .then((IDs) => {
-        //         console.log(IDs);
-        //         return getRecipe(IDs[2]);
-        //     })
-        //     .then((recipe) => {
-        //         console.log(recipe);
-        //     })
-        //     .catch((error) => {
-        //         console.log("It is an error!");
-        //     });
+        const getIDs = () =>
+            new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve([532, 543, 753, 1, 5]);
+                }, 1500);
+            });
 
-        async function test() {
+        const getRecipe = (recipeID) => {
+            return new Promise((resolve, reject) => {
+                setTimeout(
+                    (ID) => {
+                        const recipe = {
+                            title: "Fresh tomato pasta",
+                            publisher: "Pinchas Hodadad",
+                        };
+                        resolve(`${ID}: ${recipe.title}`);
+                    },
+                    1500,
+                    recipeID
+                );
+            });
+        };
+        getIDs()
+            .then((IDs) => {
+                console.log(IDs);
+                return getRecipe(IDs[2]);
+            })
+            .then((recipe) => {
+                console.log(recipe);
+            })
+            .catch((error) => {
+                console.log("It is an error!");
+            });
+
+        const retrieveRecipe = async () => {
             try {
-                var some = await getIDs()
-                    return some
-            } catch (error) {
-                console.log(error)
+                const ids = await getIDs();
+                const recipes = await getRecipe(ids[2]);
+                console.log(recipes);
+            } catch (err) {
+                console.log("fetch Failed", err);
             }
-            finally {
-                var some2 = await getRecipe(some[2])
-                return some2
-            }
-        }
-        test()
+        };
+
+        retrieveRecipe();
+
     </script>
 </body>
 

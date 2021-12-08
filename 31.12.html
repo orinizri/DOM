@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    </div>
+    <button class="btn"></button>
+    <input class="input" type="text">
+    <p class="para"></p>
+    </div>
+    </div>
+    <script>
+        const container = document.querySelector('.container')
+        const btn = document.querySelector('.btn')
+        const para = document.querySelector('.para')
+        const input = document.querySelector('input')
+        let promises = [];
+        let dictionary = [];
+
+        async function getPromises (number) {
+            for (let i=1 ; i<number ; i++) {
+            let promise = await (await fetch(`https://swapi.dev/api/people/${i}/`)).json()
+            
+            promises.push(promise)
+            }
+            Promise.all(promises).then(results => {
+                console.log(results)
+                results.forEach((result,index) => {
+                    dictionary.push({
+                        name : result.name,
+                        hairColor : result.hair_color,
+                        height : result.height
+                    })
+                    return result
+                })
+            })
+        }
+            // let homeland = await (await fetch(result.homeworld)).json()
+            // console.log(homeland)
+        
+        
+        getPromises(3)
+        // async function getUsers(number) {
+            // const data = await (await fetch(`https://swapi.dev/api/films/1/`)).json();
+            // for (let i = 0; i < number; i++) {
+            //     let data2 = await (await fetch(data.characters[i])).json()
+            //     let homeland3 = await (await fetch(data2.homeworld)).json()
+
+                // let char = {}
+
+                // char['name'] = data2.name
+                // char['height'] = data2.height
+                // char['hair color'] = data2.hair_color
+                // char['planet'] = {name : homeland3.name, population: homeland3.population}
+                
+                // obj.push(char)
+        //     }
+        //     return obj
+        // }
+        // console.log(getUsers(3))
+        
+        // async function tableMaking (func) {
+        //     let arr = await func
+        //     console.log(arr)
+        //     for (let i=0 ; i<=arr.length ; i++) {
+        //         console.log(arr[i])
+        //     }
+        // }
+        // console.log(tableMaking(getUsers(3)))
+    </script>
+</body>
+
+</html>

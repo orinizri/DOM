@@ -28,12 +28,8 @@
             const data = await (await fetch(`https://swapi.dev/api/films/1/`)).json();
             for (let i = 0; i < number; i++) {
                 let data2 = await (await fetch(data.characters[i])).json()
-                let homeLand2 = await (await fetch(data.characters[i])).json()
-                let homeland3 = await (await fetch(homeLand2.homeworld)).json()
-                //console.log(homeland3)
-                // Promise.all([data2, homeLand2, homeland3]).then(values => {
-                //     console.log(values)
-                // })
+                let homeland3 = await (await fetch(data2.homeworld)).json()
+
                 let char = {}
 
                 char['name'] = data2.name
@@ -44,13 +40,17 @@
                 obj.push(char)
             }
             return obj
-            //let characterName = await (await fetch (`${character}`)).json();
-            //console.log(characterName)
-            //});
-            //const character= await(await fetch (`${data.characters[i].name}`)).json();
-            //console.log(character)
         }
-        console.log(getUsers(2))
+
+        
+        async function tableMaking (func) {
+            let arr = await func
+            console.log(arr)
+            for (let i=0 ; i<=arr.length ; i++) {
+                console.log(arr[i])
+            }
+        }
+        console.log(tableMaking(getUsers(3)))
     </script>
 </body>
 
